@@ -1,1 +1,66 @@
-<p>customer works!</p>
+<h2>Clients</h2>
+
+<ul>
+  <li *ngFor="let item of customer">
+    Telephone: {{item.id.telephone}} - CC: {{item.id.cc}} - Name: {{item.name}} - Address: {{item.address}}
+    <button (click) = "deleteCustomer(item.id.telephone, item.id.cc)">Remove</button>
+  </li>
+</ul>
+
+<hr>
+
+<h2>Create Client</h2>
+
+<form #form="ngForm" (ngSubmit)="submitForm(form)">
+  <div>
+    <input type="text" name="telephone" #telephone="ngModel" [ngModel]="telephone.value" placeholder="Telephone" required minlength="11" maxlength="11">
+    <span *ngIf="!telephone.valid && (telephone.dirty || telephone.touched)">
+            <span class="alertBlue" *ngIf="telephone.errors?.['minlength']">
+              Fill with
+              {{ telephone.errors?.['minlength'].requiredLength }}
+              digits, have you already typed
+              {{ telephone.errors?.['minlength'].actualLength }}
+            </span>
+            <span class="alert" *ngIf="!telephone.errors?.['minlength']">
+                Required field
+            </span>
+        </span>
+  </div>
+  <div><input type="text" name="cc" ngModel placeholder="CC" required></div>
+  <div><input type="text" name="name" ngModel placeholder="Name" required></div>
+  <div><input type="text" name="adress" ngModel placeholder="Address" required></div>
+  <button (click)="addCustomer(form.value.telephone, form.value.cc, form.value._name, form.value.address)">Add Customer</button>
+  <button (click)="modifyCustomer(form.value.telephone, form.value.cc, form.value._name, form.value.address)">Modify Client</button>
+  <button [disabled]="form.invalid">Submit</button>
+
+  <div><input type="radio" name="maioridade" value="maior" ngModel><label>Of legal age</label></div>
+  <div><input type="radio" name="maioridade" value="menor" ngModel><label>Minor</label></div>
+  <div><input type="radio" name="maioridade" value="não informado" ngModel><label>Uninformed</label></div>
+
+  <div><input type="checkbox" name="autorizado" ngModel><label>Authorized</label></div>
+
+  <div>
+    <select name="cidades" ngModel>
+      <option value="" default> Select the city</option>
+      <option *ngFor= "let item of citys" [ngValue] = "item">
+        {{ item.city }} ({{ item.population }})
+      </option>
+    </select>
+  </div>
+</form>
+
+<hr>
+
+{{form.value | json}}
+
+<hr>
+
+Valid phone number: {{ telephone.valid}}
+<br>
+Dirty phone: {{ telephone.dirty}}
+<br>
+Phone clicked: {{ telephone.touched}}
+<br>
+Valid form: {{ form.valid }}
+<br>
+Telephone field errors {{ telephone.errors?.['minlength'] | json }}
