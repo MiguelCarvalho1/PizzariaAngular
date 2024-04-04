@@ -1,1 +1,9 @@
-<p>home works!</p>
+<p>Login</p>
+
+<form #form="ngForm" (ngSubmit)="sendForm(form)">
+  <div>
+    <input type="text" name="user" ngModel placeholder="User" required>
+  </div>
+  <div><input type="password" name="password" ngModel placeholder="password" required></div>
+  <button [disabled]="form.invalid">Submit</button>
+</form>

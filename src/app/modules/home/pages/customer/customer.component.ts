@@ -33,11 +33,9 @@ export class CustomerComponent implements OnInit{
     //this.getCustomers();
   }
 
-  deleteCustomer(telephone: any, cc: any) {
 
-  }
 
-  submitForm(form: NgForm) {
+  public submitForm(form: NgForm) {
     if(form.invalid){
       alert("Not valid")
     }
@@ -45,13 +43,74 @@ export class CustomerComponent implements OnInit{
     form.reset();
 
   }
+  private getCustomers() {
+    this.customerService.getCustomers().subscribe({
+      next: (res) => this.customer = res,
+      error: (err) => console.log(err)
+    })
+  }
 
 
-  addCustomer(telephone: any, cc: any, _name: any, address: any) {
+  public addCustomer(telephone: any, cc: any, _name: any, address: any) {
+    var customer: Customer = {
+      id: {
+        telephone: telephone,
+        cc: cc
+      },
+      name: _name,
+      address: address
+    };
+
+    this.postCustomer(customer);
 
   }
 
-  modifyCustomer(telephone: any, cc: any, _name: any, address: any) {
+ public  modifyCustomer(telephone: any, cc: any, _name: any, address: any) {
+    var customer: Customer = {
+      id: {
+        telephone: telephone,
+        cc: cc
+      },
+      name: _name,
+      address: address
+    };
 
+    this.putCustomer(customer);
+
+  }
+
+  public postCustomer(customer: Customer) {
+    return this.customerService.postCustomer(customer).subscribe({
+      next: () => this.getCustomers(),
+      error: (err) => console.log(err)
+    });
+  }
+
+  public putCustomer(customer: Customer) {
+    return this.customerService.putCustomer(customer).subscribe({
+      next: () => this.getCustomers(),
+      error: (err) => console.log(err)
+    });
+  }
+
+  public  deleteCustomer(telephone: any, cc: any) {
+    return this.customerService.deleteCustomer(telephone, cc).subscribe({
+      next: () => {
+        this.customer = this.customer.filter(
+          item => {
+            return !(telephone == item.id.telephone && cc == item.id.cc)
+          }
+        )
+      },
+      error: (err) => console.log(err)
+    });
+
+  }
+
+  public exit(): boolean {
+    if(confirm('Do you really want to leave?')) {
+      return true;
+    }
+    return false;
   }
 }

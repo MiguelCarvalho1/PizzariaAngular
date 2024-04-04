@@ -27,7 +27,7 @@ export class CustomerService {
     return this.customers;
   }*/
 
-  public getAutorizado(): boolean {
+  public getAuthorized(): boolean {
     return this.autorizado;
   }
 

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PaginaNaoExisteComponent } from './pagina-nao-existe.component';
+import { PageNoExistComponent } from './page-no-exist.component';
 
 describe('PaginaNaoExisteComponent', () => {
-  let component: PaginaNaoExisteComponent;
-  let fixture: ComponentFixture<PaginaNaoExisteComponent>;
+  let component: PageNoExistComponent;
+  let fixture: ComponentFixture<PageNoExistComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PaginaNaoExisteComponent]
+      imports: [PageNoExistComponent]
     })
     .compileComponents();
-    
-    fixture = TestBed.createComponent(PaginaNaoExisteComponent);
+
+    fixture = TestBed.createComponent(PageNoExistComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
