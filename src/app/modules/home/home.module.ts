@@ -7,15 +7,13 @@ import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 
 @NgModule({
-  declarations:[
-    CustomerComponent,
-    PizzaComponent,
-    HomeComponent
-  ],
   imports: [
     CommonModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    CustomerComponent,
+    PizzaComponent,
+    HomeComponent
   ],
   exports: [CustomerComponent, PizzaComponent]
 })
