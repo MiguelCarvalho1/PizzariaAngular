@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PageNoExistComponent } from './page-no-exist.component';
 
-describe('PaginaNaoExisteComponent', () => {
+describe('PageNotExistComponent', () => {
   let component: PageNoExistComponent;
   let fixture: ComponentFixture<PageNoExistComponent>;
 

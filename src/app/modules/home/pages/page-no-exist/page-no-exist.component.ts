@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-pagina-nao-existe',
@@ -7,6 +7,12 @@ import { Component } from '@angular/core';
   templateUrl: './page-no-exist.component.html',
   styleUrl: './page-no-exist.component.css'
 })
-export class PageNoExistComponent {
+export class PageNoExistComponent implements OnInit{
+
+  constructor() {
+  }
+
+  ngOnInit() {
+  }
 
 }
